@@ -32,7 +32,7 @@
 
 <script>
 
-import $ from "jquery"
+// import $ from "jquery"
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap"
 import UserNavbar from '@/components/UserNavbar'
@@ -56,21 +56,62 @@ export default{
         if(Indetify.value==="Administ")
         {
           Indetify.value="user";
-          console.log(Indetify);
+          console.log(Indetify.value);
         }
         else if (Indetify.value==="user") {
           Indetify.value="Administ";
-          console.log(Indetify);
+          console.log(Indetify.value);
         }
     }
-    $.ajax({
-      url:"http://127.0.0.1:3000/user/info/",
-      type:"get",
-  
-      success(resp){
-        console.log(resp);
-      }
-    })
+    // $.ajax({
+    //   url:"http://127.0.0.1:3000/user/account/token/",
+    //   type:"post",
+    //   data:{
+    //     username:"wsk",
+    //     password:"pwsk"
+    //   },
+    //   success(resp){
+    //     console.log(resp);
+    //   }
+    // }),//登录，
+
+
+     
+    // $.ajax({
+    //   url:"http://127.0.0.1:3000/user/account/info/",
+    //   type:"get",
+    //   headers:{
+    //     Authorization:"Bearer "+ "eyJhbGciOiJIUzI1NiJ9.eyJqdGkiOiIxMzc5YjU0YmMyYTM0YTcwYTIwNWVmYTZiYjQ3ZGYxZiIsInN1YiI6IjEiLCJpc3MiOiJzZyIsImlhdCI6MTczOTQ1MzQyMSwiZXhwIjoxNzQwNjYzMDIxfQ.c8BliSiu0UAXfasiKwgZcjTr6tqHqfnwTbK2ibIf-7c"
+    //   },
+    //   success(resp){
+    //     console.log(resp);
+    //   },
+    //   error(resp){
+    //     console.log(resp);
+    //   }
+    // })
+
+   
+    // $.ajax({
+    //   url:"http://127.0.0.1:3000/user/account/register/",
+    //   type:"post",
+    //   data:{
+    //     username:"dd",
+    //     identity:"打卡人员",
+    //     password:"pdd123",
+    //     confirmedPassword:"pdd123"
+    //   },
+    //   success(resp){
+    //     console.log(resp);
+    //   },
+    //   error(resp)
+    //   {
+    //     console.log(resp);
+    //   }
+    // })
+
+
+
 
     return{
       chance_indetify,

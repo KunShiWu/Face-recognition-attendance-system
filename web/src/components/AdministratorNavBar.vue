@@ -19,7 +19,19 @@
           <router-link class="nav-link" active-class="active" :to="{ name: 'face_recognition_failure_list' }">人脸识别失败名单</router-link>        
         </li>
       </ul>
-      <ul class="navbar-nav">
+
+
+      <ul class="navbar-nav " v-if="$store.state.user.is_login &&  $store.state.user.identity==='考勤人员'">
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+          {{ $store.state.user.username }}   +   {{  $store.state.user.identity }}
+          </a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="#" @click="logout">退出</a></li>
+          </ul>
+        </li>
+      </ul>
+      <ul class="navbar-nav" v-else>
         <li class="nav-item">
           <router-link class="nav-link" active-class="active" :to="{ name: 'login' }">登录  </router-link>        
         </li>  <li class="nav-item">
@@ -34,7 +46,24 @@
 
 </template>
 
-<script></script>
+<script>
+import { useStore } from 'vuex';
+
+export default{
+  setup(){
+    const store=useStore();
+    const logout = () =>{
+      console.log("logout");
+      store.dispatch("logout");
+    }
+
+    return {
+      logout
+    }
+  }
+
+}
+</script>
 
 
 <style scoped></style>
