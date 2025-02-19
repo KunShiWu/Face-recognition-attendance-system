@@ -124,8 +124,9 @@ export default{
 <style>
 
 body{
-    background-image: url("https://file.51pptmoban.com/d/file/2022/11/20/ef5ad49e71c1c2946f468b3412bafe7d.jpg");
+    background-image: url("@/assess/background.jpg");
     background-size: cover;
+    background-attachment: fixed;
 }
  
   .bottom-right {

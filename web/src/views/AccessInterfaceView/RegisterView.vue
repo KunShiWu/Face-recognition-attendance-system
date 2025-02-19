@@ -41,6 +41,7 @@
                 </form>
             </div>
             <div class="card-footer"> 
+                <div class="error_message">{{ error_message }}</div>
                 <button type="button" @click="register_administ" class="btn btn-outline-primary ms-2">管理员注册</button>
                 <button type="button" @click="register_user" class="btn btn-outline-secondary ms-2">用户注册</button>
             </div>
@@ -137,4 +138,12 @@ export default{
 </script>
 
 <style scoped>
+.error_message{
+    color: red; 
+    font-size: 18px; 
+    font-family: 'Arial', 
+    sans-serif; 
+    font-weight: bold;
+    text-align: center;
+}
 </style>

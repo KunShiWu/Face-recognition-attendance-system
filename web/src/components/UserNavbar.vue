@@ -23,7 +23,7 @@
       <ul class="navbar-nav " v-if="$store.state.user.is_login &&  $store.state.user.identity==='打卡人员'">
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-          {{ $store.state.user.username }}   +   {{  $store.state.user.identity }}
+          {{ $store.state.user.username }}   +   {{  $store.state.user.name }}
           </a>
           <ul class="dropdown-menu">
             <li><a class="dropdown-item" href="#" @click="logout">退出</a></li>

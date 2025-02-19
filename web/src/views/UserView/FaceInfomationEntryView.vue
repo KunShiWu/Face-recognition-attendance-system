@@ -1,39 +1,94 @@
 <template>
-    <div class="face-recognition">
-      <!-- 视频预览 -->
-      <video ref="videoRef" width="640" height="480" autoplay></video>
-      
-      <!-- 检测画布（隐藏） -->
-      <canvas ref="canvasRef" style="display: none;"></canvas>
-      
-      <!-- 状态显示 -->
-      <div v-if="statusMessage" class="status">{{ statusMessage }}</div>
-      
-      <!-- 捕获结果 -->
-      <img v-if="capturedImage" :src="capturedImage" alt="Captured Face" />
-      
-      <!-- 控制按钮 -->
-      <button @click="startCapture" :disabled="isCapturing">开始录入</button>
+
+
+<div class="container text-center">
+  <div class="row justify-content-md-center">
+    <div class="col col-lg-2">
+
     </div>
+    <div class="col-md-auto">
+      <div class="card text-center">
+        <div class="card-header">
+          人脸信息录入
+        </div>
+        <div class="card-body">
+          <div class="face-recognition">
+
+            <img v-if="capturedImage" :src="capturedImage" alt="Captured Face" />
+            <!-- 视频预览 -->
+
+            <div style="margin: 20px auto ;">
+            <button v-if="capturedImage"  class="btn btn-warning"  @click="againCapture">再录一次</button>
+            <button v-if="capturedImage"  class="btn btn-success"  style="margin-left: 30px;" data-bs-toggle="modal" data-bs-target="#name">录入无误</button>
+            </div>
+            <video     ref="videoRef" width="360" height="400" autoplay></video>
+            
+            <!-- 检测画布（隐藏） -->
+            <canvas  ref="canvasRef" style="display: none;"></canvas>
+            
+            <!-- 状态显示 -->
+            <div v-if="statusMessage" class="status">{{ statusMessage }}</div>
+            <!-- 捕获结果 -->
+         
+            <!-- 控制按钮 -->
+          </div>
+        </div>
+        <div class="card-footer text-body-secondary">
+          <button v-if="capturedImage===null"  @click="startCapture" class="btn btn-primary" :disabled="isCapturing">开始录入</button>
+        </div>
+    </div>
+    </div>
+    <div class="col col-lg-2">
+  
+    </div>
+  </div>
+</div>
+  
+
+
+
+<div class="modal fade" id="name" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="staticBackdropLabel" >请输入您的真实姓名</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <input v-model="names" type="text" class="form-control" placeholder="中文姓名" aria-label="Username">
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">取消</button>
+        <button type="button" @click="confirmedCapture" class="btn btn-primary"   data-bs-dismiss="modal" >确定</button>
+      </div>
+    </div>
+  </div>
+</div>
+    
   </template>
   
   <script setup>
   import { ref, onMounted, onBeforeUnmount } from 'vue'
   import * as faceapi from 'face-api.js'
-  
+  import $ from 'jquery'
+  import {useStore} from 'vuex'
+  import router from '@/router/index';
+
   // 响应式变量
+  const store=useStore();
   const videoRef = ref(null)
   const canvasRef = ref(null)
   const capturedImage = ref(null)
   const statusMessage = ref('点击开始录入')
   const isCapturing = ref(false)
   let detectionInterval = null
+  let names= ref(null)
   
   // 初始化摄像头
   async function initCamera() {
     try {
       const stream = await navigator.mediaDevices.getUserMedia({
-        video: { width: 640, height: 480 }
+        video: { width: 360, height: 400 }
       })
       videoRef.value.srcObject = stream
     } catch (error) {
@@ -91,10 +146,12 @@
     
     // 转换为Base64
     capturedImage.value = canvas.toDataURL('image/jpeg', 0.8)
+    console.log( capturedImage.value );
   }
   
   // 开始捕获流程
   function startCapture() {
+    
     isCapturing.value = true
     statusMessage.value = '正在检测人脸...'
     detectionInterval = setInterval(detectFace, 500)
@@ -111,6 +168,39 @@
     if (stream) {
       stream.getTracks().forEach(track => track.stop())
     }
+  }
+
+
+  function confirmedCapture () {
+    
+    console.log(names.value);
+    $.ajax({
+        url:'http://127.0.0.1:3000/facerecognition/faceinfomationentry/',
+        type:"post",
+        headers:{
+        Authorization:"Bearer "+ store.state.user.token
+      },
+      data:{
+        Base64Data:capturedImage.value,
+        name:names.value
+      },
+      success(resp){
+        console.log(resp);
+        stopCapture()
+        router.push({name:'home'})
+      },
+      error(resp){
+        console.log(resp);
+      }
+
+      })
+  }
+
+
+  function againCapture(){
+    capturedImage.value=null;
+    loadModels()
+    initCamera()
   }
   
   // 生命周期钩子

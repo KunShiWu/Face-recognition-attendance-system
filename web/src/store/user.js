@@ -6,6 +6,8 @@ export default ({
     username:"",
     photo:"",
     identity:"",
+    identity_photo:'',
+    name:"未实名",
     token:"",
     is_login:false  
   },
@@ -17,6 +19,9 @@ export default ({
         state.username=user.username;
         state.photo=user.photo;
         state.identity=user.identity;
+   
+        state.identity_photo=user.identity_photo;
+        state.name=user.name;
         state.is_login=user.is_login;
     },
     updateToken(state,token){
@@ -28,6 +33,8 @@ export default ({
         state.photo='',
         state.identity='',
         state.token='',
+        state.identity_photo='';
+        state.name='';
         state.is_login=false
     }
   },
@@ -65,7 +72,7 @@ export default ({
             success(resp){
                 if(resp.error_message==="success")
                 {
-      
+                    if(resp.name===null)resp.name="未实名"
                     context.commit("updateUser",{
                         ...resp,//等于后面注释的三行
                         // id:resp.id,

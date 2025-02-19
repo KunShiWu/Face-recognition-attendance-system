@@ -1,10 +1,9 @@
 <template>
     <BaseCard>
-
-        <div class="row justify-content-md-center" >
-            <div class="col-4"></div>
-                <div class="col-4"> 
-                <div class="card text-center">
+        <div class="row  justify-content-md-center"   >
+            <div class="col-3"></div>
+                <div class="col-6"> 
+                <div class="card ">
                     <div class="card-header">
                         <span style="font-weight: bold; font-style: italic;">人脸识别考勤系统</span>
                     </div>
@@ -33,14 +32,14 @@
                         
                                 <div class="card-footer"> 
                                     <div class="error_message">{{ error_message }}</div>
-                                    <button type="button" @click="login" class="btn btn-outline-primary ms-2">登录</button>
+                                    <button type="button" @click="login"  style="width:100%"  class="btn btn-outline-primary  btn_position">登录</button>
                                 </div>
                     </div>
                 
             </div>
 
             </div>
-            <div class="col-4"></div>
+            <div class="col-3"></div>
            
 
         </div>
@@ -75,7 +74,8 @@ export default{
                 success(){
 
                     store.dispatch("getinfo",{
-                        success(){
+                        success(resp){
+                            console.log(resp);
                             router.push({name:'home'});
                         },
                         error(){
@@ -120,6 +120,7 @@ export default{
     sans-serif; 
     font-weight: bold;
     text-align: center;
-
 }
+
+
 </style>
