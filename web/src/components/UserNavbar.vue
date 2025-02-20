@@ -10,7 +10,7 @@
     <div class="collapse navbar-collapse" id="navbarText">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item">
-          <router-link class="nav-link" active-class="active" :to="{ name: 'face_recoginition_attendance' }">人脸识别打卡</router-link>       
+          <router-link class="nav-link" active-class="active" :to="{ name: 'face_recoginition_attendance' }">打卡活动参与</router-link>       
         </li>
         <li class="nav-item">
           <router-link class="nav-link" active-class="active" :to="{ name: 'face_info_mation_entry' }">人脸信息录入</router-link>       

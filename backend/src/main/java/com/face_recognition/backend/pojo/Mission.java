@@ -20,10 +20,13 @@ public class Mission {
     private  String title;
     private  String description;
     private  String nameList;
-
-
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss",timezone = "Asia/Shanghai")
     private Date createtime;
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss",timezone = "Asia/Shanghai")
     private Date modifytime;
+    private Integer number;
+    private Integer randNumber;
+    private String longitude;
+    private String latitude;
+    private String location;
 }
