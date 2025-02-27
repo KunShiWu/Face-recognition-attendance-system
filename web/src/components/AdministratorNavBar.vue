@@ -10,7 +10,7 @@
     <div class="collapse navbar-collapse" id="navbarText">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item">
-          <router-link class="nav-link" active-class="active" :to="{ name: 'attendance_check_in_index' }">考勤打卡</router-link>        
+          <router-link class="nav-link" active-class="active" :to="{ name: 'attendance_check_in_index' }">打卡任务创建</router-link>        
         </li>
         <li class="nav-item">
           <router-link class="nav-link" active-class="active" :to="{ name: 'attendance_record' }">考勤数据</router-link>        

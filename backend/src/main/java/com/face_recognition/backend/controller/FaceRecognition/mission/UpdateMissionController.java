@@ -1,6 +1,6 @@
-package com.face_recognition.backend.controller.FaceRecognition;
+package com.face_recognition.backend.controller.FaceRecognition.mission;
 
-import com.face_recognition.backend.service.FaceRecognition.UpdateMissionService;
+import com.face_recognition.backend.service.FaceRecognition.Mission.UpdateMissionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;

@@ -35,6 +35,7 @@
 // import $ from "jquery"
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap"
+import 'bootstrap-icons/font/bootstrap-icons.css'
 import UserNavbar from '@/components/UserNavbar'
 import AdministratorNavBar from '@/components/AdministratorNavBar'
 import {ref} from 'vue'

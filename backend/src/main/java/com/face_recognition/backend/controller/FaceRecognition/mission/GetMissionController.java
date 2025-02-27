@@ -1,14 +1,12 @@
-package com.face_recognition.backend.controller.FaceRecognition;
+package com.face_recognition.backend.controller.FaceRecognition.mission;
 
 import com.face_recognition.backend.pojo.Mission;
-import com.face_recognition.backend.service.FaceRecognition.GetMissionListService;
+import com.face_recognition.backend.service.FaceRecognition.Mission.GetMissionListService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
-import java.util.Map;
 
 @RestController
 public class GetMissionController {

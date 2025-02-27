@@ -40,17 +40,17 @@
                                     <th>打卡简介</th>
                                     <th>参与人数</th>
                                     <th>打卡邀请码</th>
-                                    <th>修改时间</th>
+                             
                                     <th>操作</th>
                                 </tr>
                             </thead>
-                            <tbody>
-                                <tr v-for="(mission) in missions" :key="mission.id"  >
-                                    <td>{{ mission.title }}</td>
-                                    <td>{{ mission.description}}</td>
-                                    <td>{{ mission.number}}</td>
-                                    <td>{{ mission.randNumber}}</td>
-                                    <td>{{ mission.modifytime}}</td>
+                            <tbody> 
+                                <tr style="user-select: none;cursor: pointer; " v-for="(mission) in missions" :key="mission.id" >
+                                    <td  @click="missionData(mission.id)" >{{ mission.title }}</td>
+                                    <td  @click="missionData(mission.id)" >{{ mission.description}}</td>
+                                    <td  @click="missionData(mission.id)" >{{ mission.number}}</td>
+                                    <td  @click="missionData(mission.id)" >{{ mission.randNumber}}</td>
+                  
                                     <td>
                                         <button type="button" class="btn btn-secondary" data-bs-toggle="modal" :data-bs-target="'#update-mission-modal-'+mission.id" data-bs-whatever="@mdo" @click="getLocation()"   >修改</button>
                                         
@@ -176,6 +176,7 @@ import BaseCard from '@/components/BaseCard'
 import { ref } from 'vue';
 import $ from 'jquery'
 import { useStore } from 'vuex';
+import router from '@/router';
 
 export default{
     components:{
@@ -203,6 +204,7 @@ export default{
             },
           success(resp){
               missions.value=resp;
+              store.commit("updateMissions",missions.value);
           }
         })
       
@@ -294,7 +296,6 @@ export default{
                   .then(response => response.json())
                   .then(data => {
                      address.value = data.display_name;
-                    console.log("地址名称:", address);
                   })
                   .catch(error => console.error("请求错误:", error));
 
@@ -310,7 +311,12 @@ export default{
         }
 
        
-
+        const missionData=(missionId)=>{
+          store.commit("updateMissionDataId",missionId)
+          router.push({
+            name:"attendance_record",
+          })
+        }
       
       // const setPlaceholderValue=(indx,mission)=>{
       //   mission.nameList=missions.value[indx].nameList
@@ -332,7 +338,8 @@ export default{
         address,
         getLocation,
         longitude,
-        latitude
+        latitude,
+        missionData
       }
     }
 }

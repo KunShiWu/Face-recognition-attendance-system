@@ -10,6 +10,7 @@
   "dependencies": {
     "@popperjs/core": "^2.11.8",
     "bootstrap": "^5.3.3",
+    "bootstrap-icons": "^1.11.3",
     "core-js": "^3.8.3",
     "face-api.js": "^0.22.2",
     "jquery": "^3.7.1",

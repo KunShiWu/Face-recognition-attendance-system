@@ -1,10 +1,10 @@
-package com.face_recognition.backend.service.impl.FaceRecognition;
+package com.face_recognition.backend.service.impl.FaceRecognition.Mission;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.face_recognition.backend.mapper.MissionMapper;
 import com.face_recognition.backend.pojo.Mission;
 import com.face_recognition.backend.pojo.User;
-import com.face_recognition.backend.service.FaceRecognition.FaceRecognitionMissionPostService;
+import com.face_recognition.backend.service.FaceRecognition.Mission.FaceRecognitionMissionPostService;
 import com.face_recognition.backend.utils.CheckToken;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

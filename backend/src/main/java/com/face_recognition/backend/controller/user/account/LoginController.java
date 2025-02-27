@@ -21,7 +21,6 @@ public class LoginController {
     {
         String username=data.get("username");
         String password=data.get("password");
-
         return loginService.getToken(username,password);
     }
 

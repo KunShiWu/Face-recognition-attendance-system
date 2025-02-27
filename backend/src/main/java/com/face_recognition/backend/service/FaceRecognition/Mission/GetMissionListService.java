@@ -1,4 +1,4 @@
-package com.face_recognition.backend.service.FaceRecognition;
+package com.face_recognition.backend.service.FaceRecognition.Mission;
 
 import com.face_recognition.backend.pojo.Mission;
 
